@@ -62,6 +62,7 @@ function displayProjects(){
         removeBtn.addEventListener("click", function(e){
             projects.splice(e.target["id"], 1)
             displayProjects()
+            todosContainer.innerHTML = ""
         })
     });
     const newProjectDivs = document.querySelectorAll(".sidebar-project")
