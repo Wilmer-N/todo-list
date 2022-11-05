@@ -1,3 +1,4 @@
+
 function createSideBar(){
     const sidebar = document.createElement("div")
     sidebar.setAttribute("id", "sidebar")
@@ -18,9 +19,9 @@ function createHeader(){
     content.appendChild(header)
 }
 function createTodos(){
-    const todos = document.createElement("div")
-    todos.setAttribute("id", "todos")
-    content.appendChild(todos)
+    const todosContainer = document.createElement("div")
+    todosContainer.setAttribute("id", "todos-container")
+    content.appendChild(todosContainer)
 }
 
 function createProjectDiv(title, index){
@@ -51,4 +52,11 @@ function displayWhatToAdd(){
     submitProject.textContent = "submit project"
 }
 
-export {createSideBar, createHeader, createTodos, createProjectDiv, displayWhatToAdd}
+function displayTodos(todo, todosContainer){
+        const todoDiv = document.createElement("div")
+        todoDiv.setAttribute("class", "todo-div")
+        todoDiv.textContent = todo
+        todosContainer.appendChild(todoDiv)
+}
+
+export {createSideBar, createHeader, createTodos, createProjectDiv, displayWhatToAdd, displayTodos}

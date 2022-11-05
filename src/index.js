@@ -1,5 +1,5 @@
 import './style.css';
-import { createSideBar, createHeader, createTodos, createProjectDiv, displayWhatToAdd} from './layout';
+import { createSideBar, createHeader, createTodos, createProjectDiv, displayWhatToAdd, displayTodos} from './layout';
 
 const content = document.querySelector("#content")
 
@@ -15,6 +15,7 @@ const projectInput = document.querySelector("#title-input")
 const bigCard = document.querySelector("#big-card")
 const submitProjectBtn = document.querySelector("#project-submit")
 const addTodoBtn = document.querySelector("#add-todo")
+const todosContainer = document.querySelector("#todos-container")
 
 
 const projects = []
@@ -69,10 +70,13 @@ function displayProjects(){
             targetedProject = String(newProjectDiv.firstChild.textContent)
             projects.forEach(project => {
                 if(project.title == String(targetedProject)){
-                    project.todoArray.push("hello")
+                    project.todoArray.push(project.title)
+                    todosContainer.innerHTML = ""
+                    project.todoArray.forEach(arrayElement => {
+                        displayTodos(arrayElement, todosContainer)
+                    });
                 }
             });
-            console.log(projects)
         })
     }); 
 }
