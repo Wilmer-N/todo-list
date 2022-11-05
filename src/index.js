@@ -1,5 +1,5 @@
 import './style.css';
-import { createSideBar, createHeader, createTodos, createProjectDiv, displayWhatToAdd, displayTodos} from './layout';
+import { createSideBar, createHeader, createTodos, createProjectDiv, displayWhatToAdd, displayTodos, displayWhatToAddContent} from './layout';
 
 const content = document.querySelector("#content")
 
@@ -11,9 +11,7 @@ displayWhatToAdd()
 
 const addBtn = document.querySelector("#add-project")
 const sidebar = document.querySelector("#sidebar")
-const projectInput = document.querySelector("#title-input")
 const bigCard = document.querySelector("#big-card")
-const submitProjectBtn = document.querySelector("#project-submit")
 const addTodoBtn = document.querySelector("#add-todo")
 const todosContainer = document.querySelector("#todos-container")
 
@@ -31,14 +29,15 @@ function CreateProject(title){
 
 addBtn.addEventListener("click", function(){
     bigCard.style.display = "initial"
-})
-
-
-submitProjectBtn.addEventListener("click", function(){
-    const project = CreateProject(projectInput.value)
-    projectInput.value = ""
-    displayProjects()
-    bigCard.style.display = "none"
+    displayWhatToAddContent(true, false, bigCard)
+    const submitProjectBtn = document.querySelector("#project-submit")
+    const projectInput = document.querySelector("#title-input")
+    submitProjectBtn.addEventListener("click", function(){
+        const project = CreateProject(projectInput.value)
+        projectInput.value = ""
+        displayProjects()
+        bigCard.style.display = "none"
+    })
 })
 
 
@@ -76,6 +75,10 @@ function displayProjects(){
                         displayTodos(arrayElement, todosContainer)
                     });
                 }
+                addTodoBtn.addEventListener("click", function(){
+                    bigCard.style.display = "initial"
+                    displayWhatToAddContent(false, true, bigCard)
+                }) 
             });
         })
     }); 

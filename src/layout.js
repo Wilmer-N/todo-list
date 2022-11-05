@@ -43,13 +43,26 @@ function displayWhatToAdd(){
     const card = document.createElement("div")
     card.setAttribute("id", "big-card")
     content.appendChild(card)
-    const titleInput = document.createElement("input")
-    titleInput.setAttribute("id", "title-input")
-    card.appendChild(titleInput)
-    const submitProject = document.createElement("button")
-    submitProject.setAttribute("id", "project-submit")
-    card.appendChild(submitProject)
-    submitProject.textContent = "submit project"
+}
+
+function displayWhatToAddContent(addProjectTrue, addTodoTrue, bigCard){
+    if(addProjectTrue){
+        const titleInput = document.createElement("input")
+        titleInput.setAttribute("id", "title-input")
+        bigCard.appendChild(titleInput)
+        const submitProject = document.createElement("button")
+        submitProject.setAttribute("id", "project-submit")
+        bigCard.appendChild(submitProject)
+        submitProject.textContent = "submit project"
+    }else if(addTodoTrue){
+        const titleInput = document.createElement("input")
+        titleInput.setAttribute("id", "title-input-todo")
+        bigCard.appendChild(titleInput)
+        const submitTodo = document.createElement("button")
+        submitProject.setAttribute("id", "todo-submit")
+        bigCard.appendChild(submitTodo)
+        submitTodo.textContent = "submit todo"
+    }
 }
 
 function displayTodos(todo, todosContainer){
@@ -59,4 +72,4 @@ function displayTodos(todo, todosContainer){
         todosContainer.appendChild(todoDiv)
 }
 
-export {createSideBar, createHeader, createTodos, createProjectDiv, displayWhatToAdd, displayTodos}
+export {createSideBar, createHeader, createTodos, createProjectDiv, displayWhatToAdd, displayTodos, displayWhatToAddContent}
