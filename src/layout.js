@@ -18,12 +18,18 @@ function createTodos(){
     content.appendChild(todos)
 }
 
-function createProjectDiv(title){
+function createProjectDiv(title, index){
     const project = document.createElement("div")
     project.setAttribute("class", "sidebar-project")
     project.textContent = `${title}`
     sidebar.appendChild(project)
+    const removeBtn = document.createElement("button")
+    removeBtn.setAttribute("id", `${index}`)
+    removeBtn.setAttribute("class", "remove-button-class")
+    project.appendChild(removeBtn)
+    removeBtn.textContent = "X"
 }
+
 
 function displayWhatToAdd(){
     const card = document.createElement("div")

@@ -8,6 +8,7 @@ createSideBar()
 createTodos()
 displayWhatToAdd()
 
+
 const addBtn = document.querySelector("#add-project")
 const sidebar = document.querySelector("#sidebar")
 const projectInput = document.querySelector("#title-input")
@@ -27,7 +28,6 @@ function CreateProject(title){
         todoArray
     }
 }
-console.log(bigCard)
 
 addBtn.addEventListener("click", function(){
     bigCard.style.display = "initial"
@@ -41,6 +41,8 @@ submitProjectBtn.addEventListener("click", function(){
 })
 
 
+
+
 function displayProjects(){
     //Removes all current divs//
     const projectDivs = document.querySelectorAll(".sidebar-project")
@@ -50,7 +52,14 @@ function displayProjects(){
     //-----------//
     //creates new div
     projects.forEach(project => {
-        createProjectDiv(project)
+        createProjectDiv(project, projects.indexOf(project))
+    });
+    const removeBtns = document.querySelectorAll(".remove-button-class")
+    removeBtns.forEach(removeBtn => {
+        removeBtn.addEventListener("click", function(e){
+            projects.splice(e.target["id"], 1)
+            displayProjects()
+        })
     });
     console.log(projects)
 }
