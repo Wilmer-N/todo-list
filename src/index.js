@@ -1,5 +1,5 @@
 import './style.css';
-import { createSideBar, createHeader, createTodos, createProjectDiv, displayWhatToAdd, displayTodos, displayWhatToAddContent} from './layout';
+import { createSideBar, createCoverDiv, createHeader, createTodos, createProjectDiv, displayWhatToAdd, displayTodos, displayWhatToAddContent} from './layout';
 
 const content = document.querySelector("#content")
 
@@ -7,6 +7,7 @@ createHeader()
 createSideBar()
 createTodos()
 displayWhatToAdd()
+createCoverDiv()
 
 
 const addBtn = document.querySelector("#add-project")
@@ -14,6 +15,7 @@ const sidebar = document.querySelector("#sidebar")
 const bigCard = document.querySelector("#big-card")
 const addTodoBtn = document.querySelector("#add-todo")
 const todosContainer = document.querySelector("#todos-container")
+const cover = document.querySelector("#cover")
 
 
 const projects = []
@@ -26,8 +28,15 @@ function CreateProject(title){
         todoArray
     }
 }
+function setCover(){
+    cover.style.display = "initial"
+}
+function removeCover(){
+    cover.style.display = "none"
+}
 
 addBtn.addEventListener("click", function(){
+    setCover()
     bigCard.style.display = "initial"
     displayWhatToAddContent(true, false, bigCard)
     const submitProjectBtn = document.querySelector("#project-submit")
@@ -38,6 +47,7 @@ addBtn.addEventListener("click", function(){
         displayProjects()
         bigCard.style.display = "none"
         bigCard.innerHTML = ""
+        removeCover()
     })
 })
 
@@ -78,6 +88,7 @@ function displayProjects(){
                 }
             });
             addTodoBtn.addEventListener("click", function(){
+                setCover()
                 bigCard.style.display = "initial"
                 bigCard.innerHTML = ""
                 displayWhatToAddContent(false, true, bigCard)
@@ -86,19 +97,32 @@ function displayProjects(){
                 projects.forEach(project => {
                     if(project.title == String(targetedProject)){
                         todoSubmit.addEventListener("click", function(){
+                            removeCover()
                             project.todoArray.push(todoTitleInput.value)
                             todosContainer.innerHTML = ""
                             project.todoArray.forEach(arrayElement => {
-                            displayTodos(arrayElement, todosContainer)
+                            displayTodos(arrayElement, todosContainer, project.todoArray.indexOf(arrayElement))
                             bigCard.style.display = ""
                             bigCard.innerHTML = ""
                             });
+                            const removeTodoBtns = document.querySelectorAll(".remove-todo-button-class")
+                            removeTodoBtns.forEach(removeBtn => {
+                                removeBtn.addEventListener("click", function(e){ 
+                                    project.todoArray.splice(e.target["id"], 1)
+                                    todosContainer.innerHTML = ""
+                                    project.todoArray.forEach(arrayElement => {
+                                        console.log(arrayElement)
+                                        displayTodos(arrayElement, todosContainer, project.todoArray.indexOf(arrayElement))
+                                    });
+                                    console.log(project.todoArray)
+            
+                                    });
+                                })
                         })
-
+                    };
                     }
-                });
+                );
             }) 
         })
     }); 
 }
-console.log("He")

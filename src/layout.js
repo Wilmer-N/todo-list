@@ -11,8 +11,13 @@ function createSideBar(){
     addTodoBtn.textContent = "Add a todo"
     addTodoBtn.setAttribute("id", "add-todo")
     sidebar.appendChild(addTodoBtn)
-
 }
+function createCoverDiv(){
+    const cover = document.createElement("div")
+    cover.setAttribute("id", "cover")
+    content.appendChild(cover)
+}
+
 function createHeader(){
     const header = document.createElement("div")
     header.setAttribute("id", "header")
@@ -65,11 +70,16 @@ function displayWhatToAddContent(addProjectTrue, addTodoTrue, bigCard){
     }
 }
 
-function displayTodos(todo, todosContainer){
+function displayTodos(todo, todosContainer, index){
         const todoDiv = document.createElement("div")
         todoDiv.setAttribute("class", "todo-div")
         todoDiv.textContent = todo
         todosContainer.appendChild(todoDiv)
+        const removeBtn = document.createElement("button")
+        removeBtn.setAttribute("id", `${index}`)
+        removeBtn.setAttribute("class", "remove-todo-button-class")
+        todoDiv.appendChild(removeBtn)
+        removeBtn.textContent = "X"
 }
 
-export {createSideBar, createHeader, createTodos, createProjectDiv, displayWhatToAdd, displayTodos, displayWhatToAddContent}
+export {createSideBar, createCoverDiv, createHeader, createTodos, createProjectDiv, displayWhatToAdd, displayTodos, displayWhatToAddContent}
