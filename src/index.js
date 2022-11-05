@@ -37,6 +37,7 @@ addBtn.addEventListener("click", function(){
         projectInput.value = ""
         displayProjects()
         bigCard.style.display = "none"
+        bigCard.innerHTML = ""
     })
 })
 
@@ -69,17 +70,34 @@ function displayProjects(){
             targetedProject = String(newProjectDiv.firstChild.textContent)
             projects.forEach(project => {
                 if(project.title == String(targetedProject)){
-                    project.todoArray.push(project.title)
                     todosContainer.innerHTML = ""
                     project.todoArray.forEach(arrayElement => {
                         displayTodos(arrayElement, todosContainer)
                     });
                 }
-                addTodoBtn.addEventListener("click", function(){
-                    bigCard.style.display = "initial"
-                    displayWhatToAddContent(false, true, bigCard)
-                }) 
             });
+            addTodoBtn.addEventListener("click", function(){
+                bigCard.style.display = "initial"
+                bigCard.innerHTML = ""
+                displayWhatToAddContent(false, true, bigCard)
+                const todoTitleInput = document.querySelector("#title-input-todo")
+                const todoSubmit = document.querySelector("#todo-submit")
+                projects.forEach(project => {
+                    if(project.title == String(targetedProject)){
+                        todoSubmit.addEventListener("click", function(){
+                            project.todoArray.push(todoTitleInput.value)
+                            todosContainer.innerHTML = ""
+                            project.todoArray.forEach(arrayElement => {
+                            displayTodos(arrayElement, todosContainer)
+                            bigCard.style.display = ""
+                            bigCard.innerHTML = ""
+                            });
+                        })
+
+                    }
+                });
+            }) 
         })
     }); 
 }
+console.log("He")

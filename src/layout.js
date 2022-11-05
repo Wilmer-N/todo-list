@@ -59,7 +59,7 @@ function displayWhatToAddContent(addProjectTrue, addTodoTrue, bigCard){
         titleInput.setAttribute("id", "title-input-todo")
         bigCard.appendChild(titleInput)
         const submitTodo = document.createElement("button")
-        submitProject.setAttribute("id", "todo-submit")
+        submitTodo.setAttribute("id", "todo-submit")
         bigCard.appendChild(submitTodo)
         submitTodo.textContent = "submit todo"
     }
