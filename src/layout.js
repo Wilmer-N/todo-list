@@ -6,6 +6,11 @@ function createSideBar(){
     addBtn.textContent = "Add a project"
     addBtn.setAttribute("id", "add-project")
     sidebar.appendChild(addBtn)
+    const addTodoBtn = document.createElement("button")
+    addTodoBtn.textContent = "Add a todo"
+    addTodoBtn.setAttribute("id", "add-todo")
+    sidebar.appendChild(addTodoBtn)
+
 }
 function createHeader(){
     const header = document.createElement("div")
@@ -21,7 +26,9 @@ function createTodos(){
 function createProjectDiv(title, index){
     const project = document.createElement("div")
     project.setAttribute("class", "sidebar-project")
-    project.textContent = `${title}`
+    const para = document.createElement("p")
+    project.appendChild(para)
+    para.textContent = `${title}`
     sidebar.appendChild(project)
     const removeBtn = document.createElement("button")
     removeBtn.setAttribute("id", `${index}`)

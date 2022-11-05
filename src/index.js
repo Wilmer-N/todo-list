@@ -14,15 +14,14 @@ const sidebar = document.querySelector("#sidebar")
 const projectInput = document.querySelector("#title-input")
 const bigCard = document.querySelector("#big-card")
 const submitProjectBtn = document.querySelector("#project-submit")
+const addTodoBtn = document.querySelector("#add-todo")
 
 
 const projects = []
 
 function CreateProject(title){
-    projects.push(title)
     const todoArray = new Array()
-    todoArray.push(title)
-
+    projects.push({title, todoArray})
     return{
         title,
         todoArray
@@ -32,6 +31,7 @@ function CreateProject(title){
 addBtn.addEventListener("click", function(){
     bigCard.style.display = "initial"
 })
+
 
 submitProjectBtn.addEventListener("click", function(){
     const project = CreateProject(projectInput.value)
@@ -44,15 +44,17 @@ submitProjectBtn.addEventListener("click", function(){
 
 
 function displayProjects(){
+    let targetedProject = ""
+    let currentArray
     //Removes all current divs//
-    const projectDivs = document.querySelectorAll(".sidebar-project")
-    projectDivs.forEach(sideBarprojectDiv => {
-        sideBarprojectDiv.remove()
+    const OldprojectDivs = document.querySelectorAll(".sidebar-project")
+    OldprojectDivs.forEach(oldSideBarprojectDiv => {
+        oldSideBarprojectDiv.remove()
     });
     //-----------//
     //creates new div
     projects.forEach(project => {
-        createProjectDiv(project, projects.indexOf(project))
+        createProjectDiv(project.title, projects.indexOf(project))
     });
     const removeBtns = document.querySelectorAll(".remove-button-class")
     removeBtns.forEach(removeBtn => {
@@ -61,5 +63,16 @@ function displayProjects(){
             displayProjects()
         })
     });
-    console.log(projects)
+    const newProjectDivs = document.querySelectorAll(".sidebar-project")
+    newProjectDivs.forEach(newProjectDiv => {
+        newProjectDiv.addEventListener("click", function(){
+            targetedProject = String(newProjectDiv.firstChild.textContent)
+            projects.forEach(project => {
+                if(project.title == String(targetedProject)){
+                    project.todoArray.push("hello")
+                }
+            });
+            console.log(projects)
+        })
+    }); 
 }
