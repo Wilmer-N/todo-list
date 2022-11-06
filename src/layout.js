@@ -75,11 +75,11 @@ function displayTodos(todo, todosContainer, index){
         todoDiv.setAttribute("class", "todo-div")
         todoDiv.textContent = todo
         todosContainer.appendChild(todoDiv)
-        const removeBtn = document.createElement("button")
-        removeBtn.setAttribute("id", `${index}`)
-        removeBtn.setAttribute("class", "remove-todo-button-class")
-        todoDiv.appendChild(removeBtn)
-        removeBtn.textContent = "X"
+        const removeTodoBtn = document.createElement("button")
+        removeTodoBtn.setAttribute("id", `${index}`)
+        removeTodoBtn.setAttribute("class", "remove-todo-button-class")
+        todoDiv.appendChild(removeTodoBtn)
+        removeTodoBtn.textContent = "X"
 }
 
 export {createSideBar, createCoverDiv, createHeader, createTodos, createProjectDiv, displayWhatToAdd, displayTodos, displayWhatToAddContent}

@@ -56,7 +56,6 @@ addBtn.addEventListener("click", function(){
 
 function displayProjects(){
     let targetedProject = ""
-    let currentArray
     //Removes all current divs//
     const OldprojectDivs = document.querySelectorAll(".sidebar-project")
     OldprojectDivs.forEach(oldSideBarprojectDiv => {
@@ -83,9 +82,10 @@ function displayProjects(){
                 if(project.title == String(targetedProject)){
                     todosContainer.innerHTML = ""
                     project.todoArray.forEach(arrayElement => {
-                        displayTodos(arrayElement, todosContainer)
+                        displayTodos(arrayElement, todosContainer, project.todoArray.indexOf(arrayElement))
                     });
                 }
+                selectRemoveButtons(project)
             });
             addTodoBtn.addEventListener("click", function(){
                 setCover()
@@ -105,24 +105,30 @@ function displayProjects(){
                             bigCard.style.display = ""
                             bigCard.innerHTML = ""
                             });
-                            const removeTodoBtns = document.querySelectorAll(".remove-todo-button-class")
-                            removeTodoBtns.forEach(removeBtn => {
-                                removeBtn.addEventListener("click", function(e){ 
-                                    project.todoArray.splice(e.target["id"], 1)
-                                    todosContainer.innerHTML = ""
-                                    project.todoArray.forEach(arrayElement => {
-                                        console.log(arrayElement)
-                                        displayTodos(arrayElement, todosContainer, project.todoArray.indexOf(arrayElement))
-                                    });
-                                    console.log(project.todoArray)
-            
-                                    });
-                                })
-                        })
-                    };
+                            selectRemoveButtons(project)
+                            
+                         })
+                        };    
                     }
                 );
             }) 
         })
     }); 
+}
+
+    
+function selectRemoveButtons(project){
+    const removeTodoBtns = document.querySelectorAll(".remove-todo-button-class")
+    removeTodoBtns.forEach(removeBtn => {
+        removeBtn.addEventListener("click", function(e){ 
+        removeSelectedBtn(e, project)
+    });
+    })
+    
+}
+
+function removeSelectedBtn(e, project){
+    console.log(e.target["id"])
+        console.log(project.todoArray)
+        selectRemoveButtons(project)
 }
