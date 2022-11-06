@@ -66,9 +66,9 @@ function displayProjects(){
     projects.forEach(project => {
         createProjectDiv(project.title, projects.indexOf(project))
     });
-    const removeBtns = document.querySelectorAll(".remove-button-class")
-    removeBtns.forEach(removeBtn => {
-        removeBtn.addEventListener("click", function(e){
+    const removeProjectBtns = document.querySelectorAll(".remove-button-class")
+    removeProjectBtns.forEach(removeProjectBtn => {
+        removeProjectBtn.addEventListener("click", function(e){
             projects.splice(e.target["id"], 1)
             displayProjects()
             todosContainer.innerHTML = ""
@@ -84,8 +84,9 @@ function displayProjects(){
                     project.todoArray.forEach(arrayElement => {
                         displayTodos(arrayElement, todosContainer, project.todoArray.indexOf(arrayElement))
                     });
+                    selectRemoveButtons(project)
                 }
-                selectRemoveButtons(project)
+                
             });
             addTodoBtn.addEventListener("click", function(){
                 setCover()
@@ -119,16 +120,14 @@ function displayProjects(){
     
 function selectRemoveButtons(project){
     const removeTodoBtns = document.querySelectorAll(".remove-todo-button-class")
-    removeTodoBtns.forEach(removeBtn => {
-        removeBtn.addEventListener("click", function(e){ 
-        removeSelectedBtn(e, project)
-    });
+    removeTodoBtns.forEach(removeTodoBtn => {
+        removeTodoBtn.addEventListener("click", function(e){ 
+            todosContainer.innerHTML = ""
+            project.todoArray.splice(e.target["id"], 1)
+            project.todoArray.forEach(arrayElement => {
+                displayTodos(arrayElement, todosContainer, project.todoArray.indexOf(arrayElement))
+                });
+            selectRemoveButtons(project)
+        });
     })
-    
-}
-
-function removeSelectedBtn(e, project){
-    console.log(e.target["id"])
-        console.log(project.todoArray)
-        selectRemoveButtons(project)
 }
