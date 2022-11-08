@@ -63,6 +63,14 @@ function displayWhatToAddContent(addProjectTrue, addTodoTrue, bigCard){
         const titleInput = document.createElement("input")
         titleInput.setAttribute("id", "title-input-todo")
         bigCard.appendChild(titleInput)
+        for (let index = 0; index < 3; index++) {
+            const priorityInput = document.createElement("input")
+            priorityInput.setAttribute("type", "radio")
+            priorityInput.setAttribute("class", "radio")
+            priorityInput.setAttribute("name", "priority")
+            priorityInput.setAttribute("id", `priority-${index}`)
+            bigCard.appendChild(priorityInput)
+        }
         const submitTodo = document.createElement("button")
         submitTodo.setAttribute("id", "todo-submit")
         bigCard.appendChild(submitTodo)
@@ -70,9 +78,12 @@ function displayWhatToAddContent(addProjectTrue, addTodoTrue, bigCard){
     }
 }
 
-function displayTodos(todo, todosContainer, index){
+function displayTodos(todo, todosContainer, index, colorPriority){
+        console.log(colorPriority)
+        console.log(index)
         const todoDiv = document.createElement("div")
         todoDiv.setAttribute("class", "todo-div")
+        todoDiv.setAttribute("id", `todo-dive-${index}`)
         todoDiv.textContent = todo
         todosContainer.appendChild(todoDiv)
         const removeTodoBtn = document.createElement("button")
@@ -80,6 +91,13 @@ function displayTodos(todo, todosContainer, index){
         removeTodoBtn.setAttribute("class", "remove-todo-button-class")
         todoDiv.appendChild(removeTodoBtn)
         removeTodoBtn.textContent = "X"
+        if(colorPriority == "0"){
+            todoDiv.style.backgroundColor = "red"
+        }else if(colorPriority == "1"){
+            todoDiv.style.backgroundColor = "yellow"
+        }else if(colorPriority == "2"){
+            todoDiv.style.backgroundColor = "green"
+        }
 }
 
 export {createSideBar, createCoverDiv, createHeader, createTodos, createProjectDiv, displayWhatToAdd, displayTodos, displayWhatToAddContent}
