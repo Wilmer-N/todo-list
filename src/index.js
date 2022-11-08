@@ -23,7 +23,8 @@ const projects = []
 function CreateProject(title){
     const todoArray = new Array()
     const priorityArray = new Array()
-    projects.push({title, todoArray, priorityArray})
+    const dueDateArray = new Array()
+    projects.push({title, todoArray, priorityArray, dueDateArray})
     return{
         title,
         todoArray
@@ -83,7 +84,7 @@ function displayProjects(){
                 if(project.title == String(targetedProject)){
                     todosContainer.innerHTML = ""
                     project.todoArray.forEach(arrayElement => {
-                        displayTodos(arrayElement, todosContainer, project.todoArray.indexOf(arrayElement), project.priorityArray[project.todoArray.indexOf(arrayElement)])
+                        displayTodos(arrayElement, todosContainer, project.todoArray.indexOf(arrayElement), project.priorityArray[project.todoArray.indexOf(arrayElement)], project.dueDateArray[project.todoArray.indexOf(arrayElement)])
                     });
                     selectRemoveButtons(project)
                 }
@@ -97,10 +98,12 @@ function displayProjects(){
                 displayWhatToAddContent(false, true, bigCard)
                 const todoTitleInput = document.querySelector("#title-input-todo")
                 const todoSubmit = document.querySelector("#todo-submit")
+                const dueDateInput = document.querySelector("#due-date")
                 const priorityInputs = document.querySelectorAll(".radio")
                 projects.forEach(project => {
                     if(project.title == String(targetedProject)){
                         todoSubmit.addEventListener("click", function(){
+                            console.log(dueDateInput.value)
                             priorityInputs.forEach(priorityInput => {
                                 if(priorityInput.checked){
                                     priorityNumber = priorityInput.id.charAt(9)
@@ -109,14 +112,15 @@ function displayProjects(){
                             removeCover()
                             project.todoArray.push(todoTitleInput.value)
                             project.priorityArray.push(priorityNumber)
-                            console.log(project.priorityArray)
+                            project.dueDateArray.push(dueDateInput.value)
+                            console.log(project.dueDate)
                             todosContainer.innerHTML = ""
                             project.todoArray.forEach(arrayElement => {
-                            displayTodos(arrayElement, todosContainer, project.todoArray.indexOf(arrayElement), project.priorityArray[project.todoArray.indexOf(arrayElement)])
+                            displayTodos(arrayElement, todosContainer, project.todoArray.indexOf(arrayElement), project.priorityArray[project.todoArray.indexOf(arrayElement)], project.dueDateArray[project.todoArray.indexOf(arrayElement)])
                             bigCard.style.display = ""
                             bigCard.innerHTML = ""
                             });
-                            selectRemoveButtons(project, priorityNumber)
+                            selectRemoveButtons(project, priorityNumber, dueDateInput.value)
                             
                          })
                         };    
@@ -128,18 +132,19 @@ function displayProjects(){
 }
 
     
-function selectRemoveButtons(project, priorityNumber){
+function selectRemoveButtons(project, priorityNumber, dueDateValue){
     const removeTodoBtns = document.querySelectorAll(".remove-todo-button-class")
     removeTodoBtns.forEach(removeTodoBtn => {
         removeTodoBtn.addEventListener("click", function(e){ 
             todosContainer.innerHTML = ""
             project.todoArray.splice(e.target["id"], 1)
             project.priorityArray.splice(e.target["id"], 1)
-            console.log(project.priorityArray)
+            project.dueDateArray.splice(e.target["id"], 1)
+            console.log(project.dueDateArray)
             project.todoArray.forEach(arrayElement => {
-                displayTodos(arrayElement, todosContainer, project.todoArray.indexOf(arrayElement), project.priorityArray[project.todoArray.indexOf(arrayElement)])
+                displayTodos(arrayElement, todosContainer, project.todoArray.indexOf(arrayElement), project.priorityArray[project.todoArray.indexOf(arrayElement)], project.dueDateArray[project.todoArray.indexOf(arrayElement)])
                 });
-            selectRemoveButtons(project, priorityNumber)
+            selectRemoveButtons(project, priorityNumber, dueDateValue)
         });
     })
 }

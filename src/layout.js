@@ -71,6 +71,10 @@ function displayWhatToAddContent(addProjectTrue, addTodoTrue, bigCard){
             priorityInput.setAttribute("id", `priority-${index}`)
             bigCard.appendChild(priorityInput)
         }
+        const dueDateInput = document.createElement("input")
+        dueDateInput.setAttribute("type", "date")
+        dueDateInput.setAttribute("id", "due-date")
+        bigCard.appendChild(dueDateInput)
         const submitTodo = document.createElement("button")
         submitTodo.setAttribute("id", "todo-submit")
         bigCard.appendChild(submitTodo)
@@ -78,13 +82,13 @@ function displayWhatToAddContent(addProjectTrue, addTodoTrue, bigCard){
     }
 }
 
-function displayTodos(todo, todosContainer, index, colorPriority){
+function displayTodos(todo, todosContainer, index, colorPriority, dueDateDisplay){
         console.log(colorPriority)
         console.log(index)
         const todoDiv = document.createElement("div")
         todoDiv.setAttribute("class", "todo-div")
         todoDiv.setAttribute("id", `todo-dive-${index}`)
-        todoDiv.textContent = todo
+        todoDiv.textContent = todo 
         todosContainer.appendChild(todoDiv)
         const removeTodoBtn = document.createElement("button")
         removeTodoBtn.setAttribute("id", `${index}`)
@@ -98,6 +102,10 @@ function displayTodos(todo, todosContainer, index, colorPriority){
         }else if(colorPriority == "2"){
             todoDiv.style.backgroundColor = "green"
         }
+        const dueDatePara = document.createElement("p")
+        todoDiv.appendChild(dueDatePara)
+        dueDatePara.setAttribute("class", "due-date-para")
+        dueDatePara.textContent = dueDateDisplay
 }
 
 export {createSideBar, createCoverDiv, createHeader, createTodos, createProjectDiv, displayWhatToAdd, displayTodos, displayWhatToAddContent}
