@@ -37,6 +37,12 @@ function removeCover(){
     cover.style.display = "none"
 }
 
+function removeBigCard(){
+    bigCard.style.display = "none"
+    bigCard.innerHTML = ""
+    removeCover()
+}
+
 addBtn.addEventListener("click", function(){
     setCover()
     bigCard.style.display = "initial"
@@ -44,6 +50,7 @@ addBtn.addEventListener("click", function(){
     const submitProjectBtn = document.querySelector("#project-submit")
     const projectInput = document.querySelector("#title-input")
     const closeBigCard = document.querySelector("#close-bigcard")
+    closeBigCard.addEventListener("click", removeBigCard)
     submitProjectBtn.addEventListener("click", function(){
         let isProjectInList = false
         projects.forEach(proj => {
