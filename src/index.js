@@ -115,6 +115,8 @@ function displayProjects(){
                 bigCard.style.display = "initial"
                 bigCard.innerHTML = ""
                 displayWhatToAddContent(false, true, bigCard)
+                const closeBigCard = document.querySelector("#close-bigcard")
+                closeBigCard.addEventListener("click", removeBigCard)
                 const todoTitleInput = document.querySelector("#title-input-todo")
                 const todoSubmit = document.querySelector("#todo-submit")
                 const dueDateInput = document.querySelector("#due-date")

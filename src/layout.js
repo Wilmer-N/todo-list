@@ -59,10 +59,7 @@ function displayWhatToAddContent(addProjectTrue, addTodoTrue, bigCard){
         submitProject.setAttribute("id", "project-submit")
         bigCard.appendChild(submitProject)
         submitProject.textContent = "submit project"
-        const bigCardClose = document.createElement("button")
-        bigCardClose.setAttribute("id", "close-bigcard")
-        bigCard.appendChild(bigCardClose)
-        bigCardClose.textContent = "X"
+        bigCardRemoveButton(bigCard)
     }else if(addTodoTrue){
         const titleInput = document.createElement("input")
         titleInput.setAttribute("id", "title-input-todo")
@@ -83,7 +80,14 @@ function displayWhatToAddContent(addProjectTrue, addTodoTrue, bigCard){
         submitTodo.setAttribute("id", "todo-submit")
         bigCard.appendChild(submitTodo)
         submitTodo.textContent = "submit todo"
+        bigCardRemoveButton(bigCard)
     }
+}
+function bigCardRemoveButton(bigCard){
+    const bigCardClose = document.createElement("button")
+        bigCardClose.setAttribute("id", "close-bigcard")
+        bigCard.appendChild(bigCardClose)
+        bigCardClose.textContent = "X"
 }
 
 function displayTodos(todo, todosContainer, index, colorPriority, dueDateDisplay){
