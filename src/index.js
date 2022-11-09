@@ -91,7 +91,7 @@ function displayProjects(){
                 
             });
             addTodoBtn.addEventListener("click", function(){
-                let priorityNumber
+                let priorityNumber = 2
                 setCover()
                 bigCard.style.display = "initial"
                 bigCard.innerHTML = ""

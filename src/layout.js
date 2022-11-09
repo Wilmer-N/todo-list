@@ -95,6 +95,7 @@ function displayTodos(todo, todosContainer, index, colorPriority, dueDateDisplay
         removeTodoBtn.setAttribute("class", "remove-todo-button-class")
         todoDiv.appendChild(removeTodoBtn)
         removeTodoBtn.textContent = "X"
+        
         if(colorPriority == "0"){
             todoDiv.style.backgroundColor = "red"
         }else if(colorPriority == "1"){
