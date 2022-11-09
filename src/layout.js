@@ -59,6 +59,10 @@ function displayWhatToAddContent(addProjectTrue, addTodoTrue, bigCard){
         submitProject.setAttribute("id", "project-submit")
         bigCard.appendChild(submitProject)
         submitProject.textContent = "submit project"
+        const bigCardClose = document.createElement("button")
+        bigCardClose.setAttribute("id", "close-bigcard")
+        bigCard.appendChild(bigCardClose)
+        bigCardClose.textContent = "X"
     }else if(addTodoTrue){
         const titleInput = document.createElement("input")
         titleInput.setAttribute("id", "title-input-todo")

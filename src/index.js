@@ -43,17 +43,17 @@ addBtn.addEventListener("click", function(){
     displayWhatToAddContent(true, false, bigCard)
     const submitProjectBtn = document.querySelector("#project-submit")
     const projectInput = document.querySelector("#title-input")
+    const closeBigCard = document.querySelector("#close-bigcard")
     submitProjectBtn.addEventListener("click", function(){
-        let isProjectInList
+        let isProjectInList = false
         projects.forEach(proj => {
             if(proj.title == projectInput.value){
                 isProjectInList = true
-            }else{
-                isProjectInList = false
+                
             }
         })
         if(!isProjectInList){
-            const project = CreateProject(projectInput.value)
+        const project = CreateProject(projectInput.value)
         projectInput.value = ""
         displayProjects()
         bigCard.style.display = "none"
