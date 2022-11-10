@@ -106,6 +106,8 @@ function displayProjects(){
                         displayTodos(arrayElement, todosContainer, project.todoArray.indexOf(arrayElement), project.priorityArray[project.todoArray.indexOf(arrayElement)], project.dueDateArray[project.todoArray.indexOf(arrayElement)])
                     });
                     selectRemoveButtons(project)
+                    selectTodoDivs(project)
+                    
                 }
                 
             });
@@ -142,7 +144,7 @@ function displayProjects(){
                             bigCard.innerHTML = ""
                             });
                             selectRemoveButtons(project, priorityNumber, dueDateInput.value)
-                            
+                            selectTodoDivs()
                          })
                         };    
                     }
@@ -168,4 +170,13 @@ function selectRemoveButtons(project, priorityNumber, dueDateValue){
             selectRemoveButtons(project, priorityNumber, dueDateValue)
         });
     })
+}
+
+function selectTodoDivs(){
+    const todoDivs = document.querySelectorAll(".todo-div")
+    todoDivs.forEach(divOfTodo => {
+        divOfTodo.addEventListener("click", function(){
+            console.log(divOfTodo)
+        })
+    });
 }

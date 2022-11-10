@@ -107,11 +107,11 @@ function displayTodos(todo, todosContainer, index, colorPriority, dueDateDisplay
         priorityDiv.setAttribute("class", "priority-div")
         todoDiv.appendChild(priorityDiv)
         if(colorPriority == "0"){
-            todoDiv.style.backgroundColor = "red"
+            todoDiv.style.backgroundColor = "#e65419"
         }else if(colorPriority == "1"){
-            todoDiv.style.backgroundColor = "yellow"
+            todoDiv.style.backgroundColor = "#ead827"
         }else if(colorPriority == "2"){
-            todoDiv.style.backgroundColor = "green"
+            todoDiv.style.backgroundColor = "#40bf5a"
         }
         const dueDatePara = document.createElement("p")
         todoDiv.appendChild(dueDatePara)
